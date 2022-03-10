@@ -4,86 +4,76 @@
 
         <div class="wrap-breadcrumb">
             <ul>
-                <li class="item-link"><a href="#" class="link">home</a></li>
-                <li class="item-link"><span>login</span></li>
+                <li class="item-link"><a href="/" class="link">home</a></li>
+                <li class="item-link"><span>Cart</span></li>
             </ul>
         </div>
         <div class=" main-content-area">
 
             <div class="wrap-iten-in-cart">
-                <h3 class="box-title">Products Name</h3>
+                @if (Session::has('success_message'))
+                    <div class="alert alert-success">
+                        {{Session::get('success_message')}}<strong> Satisfactoriamente!</strong>
+                    </div>
+                @endif
+
+                @if (Cart::count() > 0)
+                <h3 class="box-title">Nombre de los Productos</h3>
                 <ul class="products-cart">
+                    @foreach (Cart::content() as $item )                                            
                     <li class="pr-cart-item">
                         <div class="product-image">
-                            <figure><img src="{{('assets/images/products/digital_18.jpg')}}" alt=""></figure>
+                            <figure><img src="{{('assets/images/products')}}/{{$item->model->image}}" alt="{{$item->model->name}}"></figure>
                         </div>
                         <div class="product-name">
-                            <a class="link-to-product" href="#">Radiant-360 R6 Wireless Omnidirectional Speaker [White]</a>
+                            <a class="link-to-product" href="{{route('product.details',['slug'=>$item->model->slug])}}">{{$item->model->name}}</a>
                         </div>
-                        <div class="price-field produtc-price"><p class="price">$256.00</p></div>
+                        <div class="price-field produtc-price"><p class="price">{{$item->model->regular_price}}</p></div>
                         <div class="quantity">
                             <div class="quantity-input">
-                                <input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*" >									
-                                <a class="btn btn-increase" href="#"></a>
-                                <a class="btn btn-reduce" href="#"></a>
+                                <input type="text" name="product-quatity" value="{{$item->qty}}" data-max="120" pattern="[0-9]*" >									
+                                <a class="btn btn-increase" href="#" wire:click.prevent="increaseQuantity('{{$item->rowId}}')"></a>
+                                <a class="btn btn-reduce" href="#" wire:click.prevent="decreaseQuantity('{{$item->rowId}}')"></a>
                             </div>
                         </div>
-                        <div class="price-field sub-total"><p class="price">$256.00</p></div>
+                        <div class="price-field sub-total"><p class="price">{{$item->subtotal }}</p></div>
                         <div class="delete">
-                            <a href="#" class="btn btn-delete" title="">
-                                <span>Delete from your cart</span>
+                            <a href="#" class="btn btn-delete" title="" wire:click.prevent="destroy('{{$item->rowId}}')">
+                                <span>Borrar de tu Carrito</span>
                                 <i class="fa fa-times-circle" aria-hidden="true"></i>
                             </a>
                         </div>
                     </li>
-                    <li class="pr-cart-item">
-                        <div class="product-image">
-                            <figure><img src="{{('assets/images/products/digital_20.jpg')}}" alt=""></figure>
-                        </div>
-                        <div class="product-name">
-                            <a class="link-to-product" href="#">Radiant-360 R6 Wireless Omnidirectional Speaker [White]</a>
-                        </div>
-                        <div class="price-field produtc-price"><p class="price">$256.00</p></div>
-                        <div class="quantity">
-                            <div class="quantity-input">
-                                <input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*">									
-                                <a class="btn btn-increase" href="#"></a>
-                                <a class="btn btn-reduce" href="#"></a>
-                            </div>
-                        </div>
-                        <div class="price-field sub-total"><p class="price">$256.00</p></div>
-                        <div class="delete">
-                            <a href="#" class="btn btn-delete" title="">
-                                <span>Delete from your cart</span>
-                                <i class="fa fa-times-circle" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </li>												
+                    @endforeach                    												
                 </ul>
+                @else
+                <p>No hay productos en el Carrito</p>
+                @endif
             </div>
 
             <div class="summary">
                 <div class="order-summary">
-                    <h4 class="title-box">Order Summary</h4>
-                    <p class="summary-info"><span class="title">Subtotal</span><b class="index">$512.00</b></p>
-                    <p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
-                    <p class="summary-info total-info "><span class="title">Total</span><b class="index">$512.00</b></p>
+                    <h4 class="title-box">Resumen de Orden</h4>
+                    <p class="summary-info"><span class="title">Subtotal</span><b class="index">{{Cart::subtotal()}}</b></p>
+                    <p class="summary-info"><span class="title">Impuestos</span><b class="index">{{Cart::tax()}}</b></p>
+                    <p class="summary-info"><span class="title">Envio</span><b class="index">Envio Gratis</b></p>
+                    <p class="summary-info total-info "><span class="title">Total</span><b class="index">{{Cart::total()}}</b></p>
                 </div>
                 <div class="checkout-info">
                     <label class="checkbox-field">
-                        <input class="frm-input " name="have-code" id="have-code" value="" type="checkbox"><span>I have promo code</span>
+                        <input class="frm-input " name="have-code" id="have-code" value="" type="checkbox"><span>Tengo un cupon</span>
                     </label>
-                    <a class="btn btn-checkout" href="checkout.html">Check out</a>
-                    <a class="link-to-shop" href="shop.html">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                    <a class="btn btn-checkout" href="checkout.html">Verificar</a>
+                    <a class="link-to-shop" href="shop.html">Continuar Comprando<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="update-clear">
-                    <a class="btn btn-clear" href="#">Clear Shopping Cart</a>
-                    <a class="btn btn-update" href="#">Update Shopping Cart</a>
+                    <a class="btn btn-clear" href="#" wire:click.prevent="destroyAll()">Borrar Carrito de Compras</a>
+                    <a class="btn btn-update" href="#">Actualizar Carrito de Compras</a>
                 </div>
             </div>
 
             <div class="wrap-show-advance-info-box style-1 box-in-site">
-                <h3 class="title-box">Most Viewed Products</h3>
+                <h3 class="title-box">Productos mas vistos</h3>
                 <div class="wrap-products">
                     <div class="products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}' >
 

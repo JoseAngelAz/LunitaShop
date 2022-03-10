@@ -8,15 +8,17 @@ use App\Models\Product;
 use Cart;
 use App\Models\Category;
 
-class ShopComponent extends Component
+class CategoryComponent extends Component
 {
     //propiedades para ordenar productos
     public $sorting;
     public $pagesize;
+    public $category_slug;
 
-    public function mount(){
+    public function mount($category_slug){
         $this->sorting = "default";
         $this->pagesize= 12;
+        $this->category_slug = $category_slug;
     }
 
     public function store($product_id, $product_name,$product_price){
@@ -28,27 +30,33 @@ class ShopComponent extends Component
     use WithPagination;
     public function render()
     {
+        //category slug
+        $category = Category::where('slug',$this->category_slug)->first();
+        $category_id = $category->id;
+        $category_name = $category->name;
+
+        //lista de categorias desplegable
         if ($this->sorting =='date') {
             //cantidad de productos por paginacion
-            $products = Product::orderBy('created_at','DESC')->paginate($this->pagesize);
+            $products = Product::where('category_id',$category_id)->orderBy('created_at','DESC')->paginate($this->pagesize);
             
         }
         else if ($this->sorting =='price') {
             //cantidad de productos por precio regular ascendente
-            $products = Product::orderBy('regular_price','ASC')->paginate($this->pagesize);
+            $products = Product::where('category_id',$category_id)->orderBy('regular_price','ASC')->paginate($this->pagesize);
             
         }
         else if ($this->sorting =='price_desc') {
             //cantidad de productos por precio regular descendente
-            $products = Product::orderBy('regular_price','DESC')->paginate($this->pagesize);
+            $products = Product::where('category_id',$category_id)->orderBy('regular_price','DESC')->paginate($this->pagesize);
             
         }
         else{
-            $products = Product::paginate($this->pagesize);
+            $products = Product::where('category_id',$category_id)->paginate($this->pagesize);
         }
         //categorias
         $categories = Category::all();
 
-        return view('livewire.shop-component',['products'=>$products,'categories'=>$categories])->layout("layouts.base");
+        return view('livewire.category-component',['products'=>$products,'categories'=>$categories,'category_name'=>$category_name])->layout("layouts.base");
     }
 }
