@@ -7237,10 +7237,13 @@ p.text-sm.text-gray-700.leading-5 {
     width: 20px;
 }
 .product-name{
-    border: #00bf3f solid 1px;
-    border-radius: 30px;
+    /* border: #00bf3f solid 1px;
+    border-radius: 30px; */
 }
 .lunitas-logo{
     height: 8em;
     padding: 1em;
+}
+.no-products{
+    padding-top: 30px;
 }
