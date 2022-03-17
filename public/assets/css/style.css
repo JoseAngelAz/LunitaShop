@@ -7250,3 +7250,12 @@ p.text-sm.text-gray-700.leading-5 {
 .eliminar_cat{
     margin-left: 2em;
 }
+.admin_products{
+    padding: 30px 0;
+}
+.img_p_admin{
+    width: 60px;
+}
+.admin_add_product_container{
+    padding: 30px 0;
+}
