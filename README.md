@@ -1,1 +1,1 @@
- voy por el video 15 admin edit category
+ voy por el video 16 admin delete category
