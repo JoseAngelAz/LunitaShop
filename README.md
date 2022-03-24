@@ -1,1 +1,1 @@
- voy por el video 19 
+ voy por el video 20, borrar producto. 
