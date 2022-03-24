@@ -1,1 +1,1 @@
- voy por el video 20, borrar producto. 
+ voy por el video 21, Admin Making Home Page Slider Dynamic 

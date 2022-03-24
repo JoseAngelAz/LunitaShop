@@ -8,14 +8,19 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="col-md-6">
-                        Productos
-                    </div>
-                    <div class="col-md-6">
-                        <a class="btn btn-success pull-rigth" href="{{route('admin.addproduct')}}">Agregar Nuevo</a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2 class="text-info">Productos</h2>
+                        </div>
+                        <div class="col-md-6">
+                            <a class="btn btn-success pull-right" href="{{route('admin.addproduct')}}">Agregar Nuevo</a>
+                        </div>
                     </div>
                 </div>
                 <div class="panel-body">
+                    @if (Session::has('message'))
+                        <div class="alert alert-success" role="alert">{{Session::get('message')}}</div>                        
+                    @endif
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -32,7 +37,7 @@
                         <tbody>
                             @foreach ($products as $product)
                                 <tr>
-                                    <td>{{$product -> id}}</td>
+                                    <td>{{$product ->id}}</td>
                                     <td><img class="img_p_admin" src="{{asset('assets/images/products')}}/{{$product->image}}" alt="productos"></td>
                                     <td>{{$product ->name}}</td>
                                     <td>{{$product ->stock_status}}</td>
@@ -41,6 +46,7 @@
                                     <td>{{$product ->created_at}}</td>
                                     <td>
                                         <a href="{{route('admin.editproduct',['product_slug'=>$product->slug])}}"><i class="fa fa-edit fa-2x text-info"></i></a>
+                                        <a href="#" wire:click.prevent="deleteProduct({{$product->id}})"><i class="fa fa-times fa-2x text-danger borrar_P"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
