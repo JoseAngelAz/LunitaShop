@@ -15,6 +15,9 @@ use App\Http\livewire\Admin\AdminEditCategoryComponent;
 use App\Http\livewire\Admin\AdminProductComponent;
 use App\Http\livewire\Admin\AdminAddProductComponent;
 use App\Http\livewire\Admin\AdminEditProductComponent;
+use App\Http\livewire\Admin\AdminHomeSliderComponent;
+use App\Http\livewire\Admin\AdminAddHomeSliderComponent;
+use App\Http\livewire\Admin\AdminEditHomeSliderComponent;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -57,4 +60,8 @@ Route::middleware(['auth:sanctum', 'verified','authadmin'])->group(function () {
     Route::get('/admin/products',AdminProductComponent::class)->name('admin.products'); 
     Route::get('/admin/products/add', AdminAddProductComponent::class)->name('admin.addproduct');
     Route::get('/admin/product/edit/{product_slug}',AdminEditProductComponent::class)->name('admin.editproduct');
+    //for slider
+    Route::get('/admin/slider',AdminHomeSliderComponent::class)->name('admin.homeslider');
+    Route::get('/admin/slider/add',AdminAddHomeSliderComponent::class)->name('admin.addhomeslider');
+    Route::get('/admin/slider/edit/{slide_id}',AdminEditHomeSliderComponent::class)->name('admin.edithomeslider');
 }); 

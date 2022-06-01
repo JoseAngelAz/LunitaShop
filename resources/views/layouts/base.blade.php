@@ -71,10 +71,10 @@
 									@auth
 									@if (Auth::user()->utype === 'ADM')
 										<li class="menu-item menu-item-has-children parent" >
-											<a title="My Account" href="Mi Cuenta({{Auth::user()->name}})"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+											<a title="My Account" href="Mi Cuenta({{Auth::user()->name}})">Cuenta ADMIN<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 											<ul class="submenu curency" >
-												<li class="menu-item" >
-													<a title="Dashboard" href="{{route('admin.dashboard')}}">Panel de Control</a>
+												<li class="menu-item">
+													<a title="Dashboard" href="{{route('admin.dashboard')}}">Panel Control</a>
 												</li>
 												<li class="menu-item" >
 													<a title="Categories" href="{{route('admin.categories')}}">Categorias</a>
@@ -82,6 +82,7 @@
 												<li class="menu-item" >
 													<a title="Products" href="{{route('admin.products')}}">Productos</a>
 												</li>
+												<li class="menu-item"><a href="{{route('admin.homeslider')}}">Manejar Slider</a></li>
 												<li class="menu-item">
 													<a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
 												</li>											
