@@ -7265,3 +7265,10 @@ p.text-sm.text-gray-700.leading-5 {
 .slider_contenerdor{
     padding: 30px 0;
 }
+.regprice{
+    font-weight: 300;
+    font-size: 13px !important;
+    color: #aaaaaa !important;
+    text-decoration: line-through;
+    padding-left: 10px;
+}

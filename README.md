@@ -1,5 +1,6 @@
  video 23, últimos productos en pagina home.TERMINADO Modulo ultimos productos en Home.
 minuto 32.TERMINADO CATEGORIAS EN HOME.
+24. Carrusel dinamico funcionando en home y detalle de producto.
 
  Querys usandos:
  INSERT INTO home_categories(
