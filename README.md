@@ -3,6 +3,7 @@ minuto 32.TERMINADO CATEGORIAS EN HOME.
 24. Carrusel dinamico funcionando en home y detalle de producto.
 
  Querys usandos:
+ PARA CATEGORIAS
  INSERT INTO home_categories(
      id,sel_categories,no_of_products,created_at,updated_at
  )VALUES(
@@ -13,4 +14,11 @@ minuto 32.TERMINADO CATEGORIAS EN HOME.
      sel_categories,no_of_products,
  )VALUES(
      '1,2,3',8,
+ );
+
+ PARA TIEMPOS DE VENTA:
+ INSERT INTO sales(
+     id,sale_date,status,created_at,updated_at
+ )VALUES(
+     NULL,'2022-6-3 03:09:18','1',NULL,NULL
  );

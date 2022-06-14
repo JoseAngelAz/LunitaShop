@@ -7272,3 +7272,9 @@ p.text-sm.text-gray-700.leading-5 {
     text-decoration: line-through;
     padding-left: 10px;
 }
+.container_sale{
+    padding: 30px 0;
+}
+.form_sale{
+    justify-content: center;
+}
