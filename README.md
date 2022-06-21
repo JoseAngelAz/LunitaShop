@@ -1,6 +1,7 @@
  video 23, últimos productos en pagina home.TERMINADO Modulo ultimos productos en Home.
 minuto 32.TERMINADO CATEGORIAS EN HOME.
 24. Carrusel dinamico funcionando en home y detalle de producto.
+voy para video 26, no he comenzado nada, hay que hacerlo!.
 
  Querys usandos:
  PARA CATEGORIAS
